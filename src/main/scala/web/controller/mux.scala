@@ -1,10 +1,8 @@
 package web.controller
 
-import utils.extFn.KtStd
-import io.vertx.core.Vertx
-import io.vertx.core.http.HttpMethod
-import io.vertx.ext.web.handler.BodyHandler
-import io.vertx.ext.web.{Router, RoutingContext}
+import io.vertx.scala.core.Vertx
+import io.vertx.scala.ext.web.{Router, RoutingContext}
+import io.vertx.scala.ext.web.handler.BodyHandler
 import web.model.PasteContent
 
 object mux {
@@ -47,15 +45,14 @@ object mux {
     def pasteHandler(routingContext: RoutingContext): Unit = {
         import routingContext._
         val content = request().getParam("content")
-        PasteContent.write(content)
+        PasteContent.write(content.get)
         response().end("Write succeed.")
     }
 
     def sendHandler(routingContext: RoutingContext): Unit = {
         import routingContext._
         val hash = request().getParam("hash")
-//        PasteContent.recv()
-        response().end(PasteContent.recv(hash))
+        response().end(PasteContent.recv(hash.get))
     }
 }
 

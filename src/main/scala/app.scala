@@ -1,7 +1,7 @@
-import io.vertx.core.Vertx
-import io.vertx.ext.web.{Router, RoutingContext}
-import web.controller.mux._
-import web.service.Redis
+import io.vertx.lang.scala.VertxExecutionContext
+import io.vertx.scala.core.Vertx
+import web.controller.mux.registerRoute
+import scala.util.{Failure, Success}
 
 object app {
     def main(args: Array[String]): Unit = {
@@ -10,7 +10,12 @@ object app {
         val app = Vertx.vertx()
         val router = registerRoute(app)
 
-        app.createHttpServer().requestHandler(router).listen(8080)
+        implicit val ec = VertxExecutionContext(app.getOrCreateContext())
+
+        app.createHttpServer().requestHandler(router).listenFuture(8080).onComplete {
+            case Failure(_) => println("Failure")
+            case Success(_) => println("Started")
+        }
 
     }
 }
