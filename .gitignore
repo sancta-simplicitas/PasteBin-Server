@@ -1,4 +1,7 @@
 .gradle
+.idea
+
+/file-uploads/
 /build/
 
 # Ignore Gradle GUI config
