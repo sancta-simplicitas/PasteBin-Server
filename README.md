@@ -1,2 +1,2 @@
 # PasteBin-Server
-Just a Pastebin web application.
+Just a Pastebin com.github.web application.
