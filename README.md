@@ -1,2 +1,2 @@
 # PasteBin-Server
-Just a Pastebin com.github.web application.
+A web application allows you copy & paste things between devices.
