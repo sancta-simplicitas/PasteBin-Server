@@ -14,7 +14,7 @@ repositories {
     mavenCentral()
 }
 
-val vertxVersion = "3.8.0"
+val vertxVersion = "3.8.5"
 val circeVersion = "0.12.3"
 dependencies {
     implementation("org.scala-lang:scala-library:2.12.10")
